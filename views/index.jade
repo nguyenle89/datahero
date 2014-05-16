@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(id = 'script-main', src = '/javascripts/lib/require.js')
+    script(id = 'script-main', src = '/javascripts/lib/Chart.min.js')
+    script.
+      require(['/javascripts/common.js'], function(common) {
+        require(['upload/main']);
+      });
+  body
+    div#upload-wrapper
+      h3 Data upload
+      div(align="center")
+        form(id="upload-form", action="/upload", method="post", enctype="multipart/form-data")
+            input#file-input(type="file", name="file", multiple="multiple")
+            input#submit-btn(type="submit")
+
+        div#progress-box(style="display:none;")
+          div#progress-bar
+          div#status-txt 0%
+
+        div#output
+        div#avg-salary(style="display: none")
+        span#employee-wrapper
+        span#salary-wrapper
+        span#salary-chart
+        div#button-group(style="display: none")
+          button#previous-button(type="button", class="pagination") Previous
+          button#next-button(type="button", class="pagination") Next
